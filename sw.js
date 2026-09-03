@@ -1,15 +1,11 @@
 /* SWHepos service worker — offline app shell (by ZS-Top) */
-var CACHE = 'swhepos-v2';
+var CACHE = 'swhepos-v3';
 var SHELL = [
   './', './index.html', './swmaps.js', './hepos.js', './hepos_grids.js',
   './manifest.webmanifest', './assets/zstop-logo.png',
   './icon-192.png', './icon-512.png',
-  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.js',
-  'https://unpkg.com/leaflet@1.9.4/dist/leaflet.css',
-  'https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js',
-  'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.wasm'
+  './lib/leaflet.js', './lib/leaflet.css',
+  './lib/xlsx.full.min.js', './lib/sql-wasm.js', './lib/sql-wasm.wasm'
 ];
 
 self.addEventListener('install', function (e) {

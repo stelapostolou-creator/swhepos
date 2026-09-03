@@ -12,11 +12,10 @@
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
-<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/proj4js/2.9.0/proj4.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/sql-wasm.js"></script>
+<link rel="stylesheet" href="lib/leaflet.css" />
+<script src="lib/leaflet.js"></script>
+<script src="lib/xlsx.full.min.js"></script>
+<script src="lib/sql-wasm.js"></script>
 <script src="hepos.js"></script>
 <script src="hepos_grids.js"></script>
 <script src="swmaps.js"></script>
@@ -213,7 +212,7 @@
   async function loadDb(file){
     try{
       setStatus('φόρτωση DB…');
-      var SQL=await initSqlJs({locateFile:f=>'https://cdnjs.cloudflare.com/ajax/libs/sql.js/1.10.3/'+f});
+      var SQL=await initSqlJs({locateFile:f=>'lib/'+f});
       var buf=await readBuf(file);
       var db=new SQL.Database(new Uint8Array(buf));
       var m=SWMaps.fromDb(db); db.close();
