@@ -1,10 +1,10 @@
 /* SWHepos service worker — offline app shell (by ZS-Top) */
-var CACHE = 'swhepos-v3';
+var CACHE = 'swhepos-v4';
 var SHELL = [
   './', './index.html', './swmaps.js', './hepos.js', './hepos_grids.js',
   './manifest.webmanifest', './assets/zstop-logo.png',
   './icon-192.png', './icon-512.png',
-  './lib/leaflet.js', './lib/leaflet.css',
+  './lib/leaflet.js', './lib/leaflet.css', './lib/proj4.js',
   './lib/xlsx.full.min.js', './lib/sql-wasm.js', './lib/sql-wasm.wasm'
 ];
 
