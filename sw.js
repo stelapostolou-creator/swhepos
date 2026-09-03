@@ -1,5 +1,5 @@
 /* SWHepos service worker — offline app shell (by ZS-Top) */
-var CACHE = 'swhepos-v4';
+var CACHE = 'swhepos-v5';
 var SHELL = [
   './', './index.html', './swmaps.js', './hepos.js', './hepos_grids.js',
   './manifest.webmanifest', './assets/zstop-logo.png',
@@ -29,12 +29,11 @@ self.addEventListener('fetch', function (e) {
   var u = e.request.url;
   // Χάρτες tiles: άσ' τα στον browser (δεν τα cache-άρουμε — δουλεύουν μόνο online)
   if (u.indexOf('tile.openstreetmap') >= 0 || u.indexOf('arcgisonline') >= 0) return;
+  // Network-first: πάντα φρέσκο όταν υπάρχει ίντερνετ· cache fallback μόνο για offline.
   e.respondWith(
-    caches.match(e.request).then(function (r) {
-      return r || fetch(e.request).then(function (resp) {
-        if (resp && resp.ok) { var cp = resp.clone(); caches.open(CACHE).then(function (c) { c.put(e.request, cp); }); }
-        return resp;
-      }).catch(function () { return r; });
-    })
+    fetch(e.request).then(function (resp) {
+      if (resp && resp.ok) { var cp = resp.clone(); caches.open(CACHE).then(function (c) { c.put(e.request, cp); }); }
+      return resp;
+    }).catch(function () { return caches.match(e.request); })
   );
 });
