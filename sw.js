@@ -1,5 +1,5 @@
 /* SWHepos service worker — offline app shell (by ZS-Top) */
-var CACHE = 'swhepos-v20';
+var CACHE = 'swhepos-v21';
 var SHELL = [
   './', './index.html', './swmaps.js', './hepos.js', './hepos_grids.js',
   './manifest.webmanifest', './assets/zstop-logo.png', './assets/aviyaan-logo.png', './assets/softwel-logo.png',
