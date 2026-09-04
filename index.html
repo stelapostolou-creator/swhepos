@@ -58,7 +58,7 @@
   .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:#0f1830;color:var(--ink);}
   .leaflet-container{background:#0a1020;}
   .leaflet-control-layers{background:#0f1830;color:var(--ink);border:1px solid var(--line);border-radius:8px;}
-  .leaflet-control-layers-toggle{background-color:#0f1830;}
+  .leaflet-control-layers-toggle{width:40px;height:40px;background-color:#0f1830;border:1px solid var(--line);border-radius:8px;background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='none' stroke='%23e6ecf5' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'><polygon points='12 2 2 7 12 12 22 7 12 2'/><polyline points='2 17 12 22 22 17'/><polyline points='2 12 12 17 22 12'/></svg>");background-size:22px 22px;background-position:center;background-repeat:no-repeat;}
   .leaflet-control-layers-expanded{padding:8px 12px;}
   .leaflet-control-layers label{color:var(--ink);font-size:13px;margin:3px 0;}
   .tblwrap{max-height:34vh;overflow:auto;border:1px solid var(--line);border-radius:8px;}
@@ -83,7 +83,7 @@
   <header>
     <img src="assets/zstop-logo.png" alt="ZS-Top" class="logo-img">
     <div class="htitle">SW<span>Hepos</span></div>
-    <div class="status" id="status">…</div>
+    <div class="status" id="status"></div>
   </header>
 
   <input type="file" id="fileDb" accept=".swm2,.swm,.db,.sqlite" style="display:none">
@@ -198,9 +198,9 @@
   // Grids: πρώτα δοκίμασε τα ενσωματωμένα (script — δουλεύει και offline/file://),
   // αλλιώς fetch (fallback).
   if(window.HEPOS_GRIDS){
-    HEPOS.setGrids(window.HEPOS_GRIDS); gridsOK=true; setStatus('έτοιμο','ok');
+    HEPOS.setGrids(window.HEPOS_GRIDS); gridsOK=true; setStatus('');
   } else {
-    HEPOS.loadGrids('hepos_grids.json').then(function(){ gridsOK=true; if(model){ retransform(); } else { setStatus('έτοιμο','ok'); } })
+    HEPOS.loadGrids('hepos_grids.json').then(function(){ gridsOK=true; if(model){ retransform(); } else { setStatus(''); } })
       .catch(function(e){ gridsOK=false; setStatus('⚠ grids εκτός','err'); });
   }
 
@@ -255,9 +255,9 @@
     renderSummary(); renderLayers(); renderMap();
     document.getElementById('btnDxf').disabled=false;
     document.getElementById('btnCsv').disabled=false;
-    setStatus((model.__fname||'')+' ✓'+(gridsOK?'':' — grids φορτώνουν…'), gridsOK?'ok':'err');
+    setStatus((model.__fname||'')+(gridsOK?'':' · grids…'), gridsOK?'':'err');
   }
-  function retransform(){ transformModel(); renderMap(); if(model) setStatus((model.__fname||'')+' ✓', gridsOK?'ok':'err'); }
+  function retransform(){ transformModel(); renderMap(); if(model) setStatus(model.__fname||'', gridsOK?'':'err'); }
 
   function renderSummary(){
     if(!model){ document.getElementById('summary').innerHTML='<span class="pill">καμία φόρτωση</span>'+(computed.length?('<span class="pill"><b>'+computed.length+'</b> σημεία χάραξης</span>'):''); return; }
