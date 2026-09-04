@@ -42,6 +42,11 @@
   .modal-card .logos{background:#fff;border-radius:10px;padding:14px 16px;margin:12px 0;display:flex;flex-direction:column;gap:12px;align-items:center;}
   .modal-card .logos img{max-width:100%;max-height:74px;height:auto;object-fit:contain;}
   .modal-card .em{color:var(--ink);font-weight:600;}
+  .langtabs{display:flex;gap:6px;margin-bottom:8px;}
+  .langbtn{background:var(--bg2);border:1px solid var(--line);color:var(--mut);border-radius:6px;padding:3px 11px;font-size:11px;font-weight:700;cursor:pointer;}
+  .langbtn.active{background:var(--navy2);color:#fff;border-color:var(--navy2);}
+  .modal-card .acc{background:rgba(46,204,113,.10);border:1px solid rgba(46,204,113,.38);border-radius:8px;padding:9px 12px;font-size:12.5px;line-height:1.5;color:#cdeede;margin:10px 0;}
+  .modal-card .acc b{color:#8ff0b6;}
   main{flex:1;overflow-y:auto;padding:14px;}
   .map-wrap{height:44vh;min-height:260px;position:relative;margin-bottom:14px;}
   #map{width:100%;height:100%;border-radius:10px;border:1px solid var(--line);}
@@ -103,24 +108,46 @@
   <div id="aboutModal" class="modal" onclick="if(event.target===this)closeAbout()">
     <div class="modal-card">
       <button class="modal-x" onclick="closeAbout()" aria-label="Close">✕</button>
+      <div class="langtabs">
+        <button id="lgEn" class="langbtn active" onclick="setAboutLang('en')">EN</button>
+        <button id="lgEl" class="langbtn" onclick="setAboutLang('el')">ΕΛ</button>
+      </div>
       <h2>SW<span>Hepos</span></h2>
-      <p class="amut">SW Maps → ΕΓΣΑ87 (HEPOS): map, points / lines / polygons, stakeout, DXF &amp; CSV export. Free for everyone.</p>
-      <h3>Developer &amp; contact</h3>
-      <p><b>Stylianos F. Apostolou</b> — Surveying Engineer<br>
-         Zitsa, Ioannina, Greece<br>
-         Tel: <a href="tel:+306948938654">+30 694 893 8654</a><br>
-         Email: <a href="mailto:stel.apostolou@gmail.com">stel.apostolou@gmail.com</a></p>
-      <h3>Works with SW Maps</h3>
-      <p>A specialized surveying assistant, designed to work in perfect harmony with <b>SW Maps</b> — one of the most complete free field data-collection apps — and tailored for Greek users.</p>
-      <p class="amut">Many thanks to developer <span class="em">Avinab Malla</span> of <span class="em">Aviyaan Tech (P) Ltd.</span>, and to <span class="em">Softwel (P) Ltd.</span> for publishing it.</p>
+
+      <div class="alang" data-lang="en">
+        <p class="amut">SW Maps → ΕΓΣΑ87 (HEPOS): map, points / lines / polygons, stakeout, DXF &amp; CSV export. Free for everyone.</p>
+        <p class="acc">✔ Uses the official <b>HEPOS 7-parameter transformation</b> with grid corrections — deviation <b>&lt; 0.005 m</b> from the HEPOS Transformation Tool.</p>
+        <h3>Developer &amp; contact</h3>
+        <p><b>Stylianos F. Apostolou</b> — Surveying Engineer<br>
+           Zitsa, Ioannina, Greece<br>
+           Tel: <a href="tel:+306948938654">+30 694 893 8654</a><br>
+           Email: <a href="mailto:stel.apostolou@gmail.com">stel.apostolou@gmail.com</a></p>
+        <h3>Works with SW Maps</h3>
+        <p>A specialized surveying assistant, designed to work in perfect harmony with <b>SW Maps</b> — one of the most complete free field data-collection apps — for Greek users.</p>
+        <p class="amut">Many thanks to developer <span class="em">Avinab Malla</span> of <span class="em">Aviyaan Tech (P) Ltd.</span>, and to <span class="em">Softwel (P) Ltd.</span> for publishing it.</p>
+      </div>
+
+      <div class="alang" data-lang="el" hidden>
+        <p class="amut">SW Maps → ΕΓΣΑ87 (HEPOS): χάρτης, σημεία / γραμμές / πολύγωνα, χάραξη, εξαγωγή DXF &amp; CSV. Δωρεάν για όλους.</p>
+        <p class="acc">✔ Χρησιμοποιεί τον επίσημο <b>7-παραμετρικό μετασχηματισμό HEPOS</b> με εφαρμογή διορθώσεων (grid) — απόκλιση <b>&lt; 0,005 μ</b> από το HEPOS Transformation Tool.</p>
+        <h3>Δημιουργός &amp; επικοινωνία</h3>
+        <p><b>Στυλιανός Φ. Αποστόλου</b> — Τοπογράφος Μηχανικός<br>
+           Ζίτσα, Ιωάννινα<br>
+           Τηλ: <a href="tel:+306948938654">+30 694 893 8654</a><br>
+           Email: <a href="mailto:stel.apostolou@gmail.com">stel.apostolou@gmail.com</a></p>
+        <h3>Συνεργάζεται με το SW Maps</h3>
+        <p>Ένας εξειδικευμένος τοπογραφικός βοηθός, σχεδιασμένος να λειτουργεί σε απόλυτη αρμονία με το <b>SW Maps</b> — μία από τις πληρέστερες δωρεάν εφαρμογές συλλογής δεδομένων πεδίου — για Έλληνες χρήστες.</p>
+        <p class="amut">Πολλές ευχαριστίες στον developer <span class="em">Avinab Malla</span> της <span class="em">Aviyaan Tech (P) Ltd.</span>, και στη <span class="em">Softwel (P) Ltd.</span> για το publishing.</p>
+      </div>
+
       <div class="logos">
         <img src="assets/aviyaan-logo.png" alt="Aviyaan Tech (P) Ltd.">
         <img src="assets/softwel-logo.png" alt="Softwel (P) Ltd.">
       </div>
       <p class="amut" style="font-size:12.5px;line-height:1.65">254 Shree Ekata Marga, New Baneshwor<br>Kathmandu, Nepal<br>Phone: +977-01-4566627, 4566629<br>Email: <a href="mailto:support@aviyaantech.com">support@aviyaantech.com</a></p>
       <p style="font-size:13px">Web: <a href="https://aviyaantech.com/swmaps/" target="_blank" rel="noopener">aviyaantech.com/swmaps</a> · <a href="http://softwel.com.np/" target="_blank" rel="noopener">softwel.com.np</a></p>
-      <p style="font-size:13px">Download SW Maps: <a href="https://play.google.com/store/apps/details?id=np.com.softwel.swmaps" target="_blank" rel="noopener">Google Play</a> · <a href="https://apps.apple.com/us/app/sw-maps/id6444248083" target="_blank" rel="noopener">App Store</a></p>
-      <p class="amut" style="font-size:10.5px;margin-top:12px">© Aviyaan Tech (P) Ltd. · SWHepos is an independent tool. · Powered by open source: Leaflet · proj4 · sql.js · SheetJS.</p>
+      <p style="font-size:13px"><span class="alang" data-lang="en">Download SW Maps:</span><span class="alang" data-lang="el" hidden>Κατέβασε το SW Maps:</span> <a href="https://play.google.com/store/apps/details?id=np.com.softwel.swmaps" target="_blank" rel="noopener">Google Play</a> · <a href="https://apps.apple.com/us/app/sw-maps/id6444248083" target="_blank" rel="noopener">App Store</a></p>
+      <p class="amut" style="font-size:10.5px;margin-top:12px">© Aviyaan Tech (P) Ltd. · <span class="alang" data-lang="en">SWHepos is an independent tool.</span><span class="alang" data-lang="el" hidden>Το SWHepos είναι ανεξάρτητο εργαλείο.</span> · Powered by open source: Leaflet · proj4 · sql.js · SheetJS.</p>
     </div>
   </div>
 
@@ -222,6 +249,11 @@
   function setStatus(t,cls){ var s=document.getElementById('status'); s.textContent=t; s.style.color = cls==='err'?'#ff9ea0':(cls==='ok'?'#8ff0b6':'#93a3bd'); }
   function openAbout(){ document.getElementById('aboutModal').classList.add('show'); }
   function closeAbout(){ document.getElementById('aboutModal').classList.remove('show'); }
+  function setAboutLang(l){
+    document.querySelectorAll('#aboutModal [data-lang]').forEach(function(el){ el.hidden = (el.getAttribute('data-lang')!==l); });
+    var en=document.getElementById('lgEn'), el=document.getElementById('lgEl');
+    if(en) en.classList.toggle('active', l==='en'); if(el) el.classList.toggle('active', l==='el');
+  }
 
   // --- Map ---
   map=L.map('map',{zoomControl:true,maxZoom:24}).setView([39.68,20.85],13);
