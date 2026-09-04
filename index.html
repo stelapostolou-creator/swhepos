@@ -184,10 +184,10 @@
   function setStatus(t,cls){ var s=document.getElementById('status'); s.textContent=t; s.style.color = cls==='err'?'#ff9ea0':(cls==='ok'?'#8ff0b6':'#93a3bd'); }
 
   // --- Map ---
-  map=L.map('map',{zoomControl:true,maxZoom:22}).setView([39.68,20.85],13);
-  var streets=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:22,maxNativeZoom:19,attribution:'© OSM'});
-  var imagery=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:22,maxNativeZoom:19,attribution:'© Esri, Maxar'});
-  var esriLabels=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:22,maxNativeZoom:19});
+  map=L.map('map',{zoomControl:true,maxZoom:24}).setView([39.68,20.85],13);
+  var streets=L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',{maxZoom:24,maxNativeZoom:19,attribution:'© OSM'});
+  var imagery=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',{maxZoom:24,maxNativeZoom:19,attribution:'© Esri, Maxar'});
+  var esriLabels=L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/Reference/World_Boundaries_and_Places/MapServer/tile/{z}/{y}/{x}',{maxZoom:24,maxNativeZoom:19});
   var satLabeled=L.layerGroup([imagery,esriLabels]).addTo(map);
   L.control.layers({'🛰️ Δορυφόρος':satLabeled,'🗺️ Χάρτης (OSM)':streets},{},{collapsed:true,position:'topright'}).addTo(map);
   drawnLayer=L.featureGroup().addTo(map);
